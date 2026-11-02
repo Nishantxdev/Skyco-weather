@@ -20,65 +20,65 @@ const WeatherPage = ({forsearch}) => {
     const refscrollhours = useRef()
     const refbottomscroll = useRef()
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        function getLocationWeather() {
-            setTimeout(() => {
-                setIsLoading(true);
+    //     function getLocationWeather() {
+    //         setTimeout(() => {
+    //             setIsLoading(true);
                 
-            }, 1000);
-            if (!navigator.geolocation) {
-                setError("Geolocation is not supported by your browser.");
-                return;
-            }
-        }
+    //         }, 1000);
+    //         if (!navigator.geolocation) {
+    //             setError("Geolocation is not supported by your browser.");
+    //             return;
+    //         }
+    //     }
         
 
-        navigator.geolocation.getCurrentPosition(
+    //     navigator.geolocation.getCurrentPosition(
             
-            async (position) => {
-                const { latitude, longitude } = position.coords;
-                let coordinate = {
-                    latitude: latitude,
-                    longitude: longitude
-                }
-                currcity(coordinate)
+    //         async (position) => {
+    //             const { latitude, longitude } = position.coords;
+    //             let coordinate = {
+    //                 latitude: latitude,
+    //                 longitude: longitude
+    //             }
+    //             currcity(coordinate)
 
-            }
-        )
+    //         }
+    //     )
 
-        getLocationWeather()
+    //     getLocationWeather()
 
-        let currcity = async (res) => {
+    //     let currcity = async (res) => {
         
 
-            const city = await fetch(
-                "/api/coordinates",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        lati: res.latitude,
-                        long: res.longitude,
-                    }),
-                }
-            );
+    //         const city = await fetch(
+    //             "/api/coordinates",
+    //             {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //                 body: JSON.stringify({
+    //                     lati: res.latitude,
+    //                     long: res.longitude,
+    //                 }),
+    //             }
+    //         );
 
-            let data = await city.json()
-            let citydata = {
-                longitude: data["result"].longitude,
-                latitude: data["result"].latitude,
-                name: data["result"].address,
-                country_code: data["result"].country_code,
-                country : data["result"].country
-            }
-            forsearch(citydata)
-            getweather(citydata)
-        }
+    //         let data = await city.json()
+    //         let citydata = {
+    //             longitude: data["result"].longitude,
+    //             latitude: data["result"].latitude,
+    //             name: data["result"].address,
+    //             country_code: data["result"].country_code,
+    //             country : data["result"].country
+    //         }
+    //         forsearch(citydata)
+    //         getweather(citydata)
+    //     }
 
-    }, [])
+    // }, [])
 
     let getweather = async (res) => {
         setIsLoading(true);
